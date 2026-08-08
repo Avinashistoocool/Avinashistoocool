@@ -8,8 +8,8 @@ Physics student @IIT Delhi building at the intersection of deep learning, physic
 - 📫 Reach me: ph1251520@physics.iitd.ac.in  |  https://www.linkedin.com/in/avinashistoocool
 
 **Featured projects**
-- [Gated-Dual-Stream-Particle-Transformer](link) — custom PyTorch architecture rethinking pairwise interactions in transformers for jet classification
-- [ISRO-BAH-26](link) — lunar subsurface ice mapping from radar polarimetry + optimal rover trajectory planning
+- [Gated-Dual-Stream-Particle-Transformer]([link](https://github.com/Avinashistoocool/Gated-Dual-Stream-Particle-Transformer)) — custom PyTorch architecture rethinking pairwise interactions in transformers for jet classification
+- [ISRO-BAH-26]([link](https://github.com/Avinashistoocool/ISRO-BAH-26)) — lunar subsurface ice mapping from radar polarimetry + optimal rover trajectory planning
 - [Jet-Class-Particle-Visualizer](link) — clean, modular alternative to ParT fusing particle + interaction info differently
 
 🛠️ Tech: Python · PyTorch · OpenCV · NumPy
