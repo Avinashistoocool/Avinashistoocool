@@ -1,7 +1,7 @@
 <img src="assets/terminal.svg" alt="Claude Code style terminal: who is Avinash" width="100%"/>
 
 <details>
-<summary><code>â¯ /projects</code> &nbsp;what I've built</summary>
+<summary><code>/projects</code> &nbsp;what I've built</summary>
 <br>
 <img src="assets/projects.svg" width="100%" alt="project list"/>
 
@@ -16,29 +16,29 @@
 </details>
 
 <details>
-<summary><code>â¯ /stack</code> &nbsp;what I build with</summary>
+<summary><code>/stack</code> &nbsp;what I build with</summary>
 <br>
 <img src="assets/stack.svg" width="100%" alt="languages and libraries"/>
 </details>
 
 <details>
-<summary><code>â¯ /now</code> &nbsp;what I'm up to</summary>
+<summary><code>/now</code> &nbsp;what I'm up to</summary>
 <br>
 <img src="assets/now.svg" width="100%" alt="recent commits and open todos"/>
 </details>
 
 <details>
-<summary><code>â¯ /contributions</code> &nbsp;the green squares, but orange</summary>
+<summary><code>/contributions</code> &nbsp;the green squares, but orange</summary>
 <br>
 <img src="assets/contributions.svg" width="100%" alt="contribution graph"/>
 </details>
 
 <details>
-<summary><code>â¯ /contact</code> &nbsp;get in touch</summary>
+<summary><code>/contact</code> &nbsp;get in touch</summary>
 <br>
 <img src="assets/contact.svg" width="100%" alt="contact"/>
 
-[mail](mailto:ph1251520@iitd.ac.in) Â· [linkedin](https://www.linkedin.com/in/avinashistoocool) Â· [github](https://github.com/Avinashistoocool)
+[mail](mailto:ph1251520@iitd.ac.in) · [linkedin](https://www.linkedin.com/in/avinashistoocool) · [github](https://github.com/Avinashistoocool)
 </details>
 
 <sub>Generated from my repositories by <code>scripts/build.py</code>, refreshed by GitHub Actions.</sub>

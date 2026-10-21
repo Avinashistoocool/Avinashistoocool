@@ -135,7 +135,7 @@ def sentence(t, n):
         return t
     cut = t[:n]
     dot = cut.rfind(". ")
-    return cut[:dot + 1] if dot > n * 0.5 else cut.rsplit(" ", 1)[0] + "â€¦"
+    return cut[:dot + 1] if dot > n * 0.5 else cut.rsplit(" ", 1)[0] + "…"
 
 
 def wrap(text, width):
@@ -154,31 +154,51 @@ def wrap(text, width):
 def clip(lines, n, width):
     if len(lines) > n:
         lines = lines[:n]
-        lines[-1] = lines[-1][:width - 1].rstrip() + "â€¦"
+        lines[-1] = lines[-1][:width - 1].rstrip() + "…"
     return lines
 
 
 # --------------------------------------------------------------------------- data
 
 def scan_code(repo, branch):
-    """Third-party imports across the repo's .py files, plus the best module docstring."""
+    """Third-party imports (counted per file) across .py/.ipynb files and requirement
+    files, plus the best module docstring."""
     tree = api(f"repos/{USER}/{repo}/git/trees/{urllib.parse.quote(branch)}?recursive=1")
     if not tree:
-        return set(), "", []
-    blobs = [t for t in tree.get("tree", []) if t["type"] == "blob"]
+        return Counter(), "", []
+    blobs = [t for t in tree.get("tree", []) if t["type"] == "blob"
+             and not re.search(r"(^|/)(\.venv|venv|site-packages|node_modules)/", t["path"])]
     paths = [t["path"] for t in blobs]
     local = {Path(p).stem for p in paths} | {p.split("/")[0] for p in paths}
-    found, doc = set(), ""
-    pys = sorted((t for t in blobs if t["path"].endswith(".py")), key=lambda t: -t.get("size", 0))[:40]
-    for t in pys:
-        src = fetch(f"https://raw.githubusercontent.com/{USER}/{repo}/{urllib.parse.quote(branch)}/{urllib.parse.quote(t['path'])}", raw=True)
-        if not src:
-            continue
-        src = src.decode("utf-8", "replace")
+    found, doc = Counter(), ""
+
+    def raw(path):
+        b = fetch(f"https://raw.githubusercontent.com/{USER}/{repo}/{urllib.parse.quote(branch)}/{urllib.parse.quote(path)}", raw=True)
+        return b.decode("utf-8", "replace") if b else ""
+
+    def add_imports(src):
+        mods = set()
         for m in re.finditer(r"^\s*(?:from|import)\s+([A-Za-z_]\w*)", src, re.M):
             mod = m.group(1)
             if mod not in sys.stdlib_module_names and mod not in local and mod != "__future__":
-                found.add(PIP_NAMES.get(mod, mod))
+                mods.add(PIP_NAMES.get(mod, mod))
+        found.update(mods)
+
+    code = sorted((t for t in blobs if t["path"].endswith((".py", ".ipynb"))), key=lambda t: -t.get("size", 0))[:60]
+    pys = [t for t in code if t["path"].endswith(".py")]
+    for t in code:
+        src = raw(t["path"])
+        if not src:
+            continue
+        if t["path"].endswith(".ipynb"):
+            try:
+                cells = json.loads(src).get("cells", [])
+                src = "\n".join("".join(c.get("source", [])) for c in cells if c.get("cell_type") == "code")
+            except ValueError:
+                continue
+        add_imports(src)
+        if t["path"].endswith(".ipynb") or doc:
+            continue
         if not doc:
             m = re.match(r'\s*(?:#[^\n]*\n\s*)*(?:"""|\'\'\')(.*?)(?:"""|\'\'\')', src, re.S)
             if m:
@@ -203,13 +223,20 @@ def collect():
     repos = [r for r in api(f"users/{USER}/repos?per_page=100&type=owner")
              if not r["fork"] and not r["archived"] and r["name"].lower() != USER.lower()]
     repos.sort(key=lambda r: (-r["stargazers_count"], r["pushed_at"]), reverse=False)
-    langs, libs, todos, commit_emails, commits = Counter(), Counter(), [], Counter(), []
+    langs, libs, lib_files, todos, commit_emails, commits = Counter(), Counter(), Counter(), [], Counter(), []
+    lang_repos = Counter()
     projects = []
     for r in repos:
         if r["size"] == 0:
             continue
         md = readme(r["name"])
         found, doc, pys = scan_code(r["name"], r["default_branch"])
+        for k, v in (api(f"repos/{USER}/{r['name']}/languages") or {}).items():
+            langs[k] += v
+            lang_repos[k] += 1
+        for lib, n in found.items():
+            libs[lib] += 1
+            lib_files[lib] += n
         text = no_emoji(clean_md(r["description"] or "")) or first_paragraph(md) or doc
         if not text:
             title = readme_title(md)
@@ -219,10 +246,6 @@ def collect():
                        (f" using {uses}." if uses else ".")
         if not text:
             continue
-        for k, v in (api(f"repos/{USER}/{r['name']}/languages") or {}).items():
-            langs[k] += v
-        for lib in found:
-            libs[lib] += 1
         for t in todo_items(md):
             todos.append((r["pushed_at"], r["name"], t))
         for c in api(f"repos/{USER}/{r['name']}/commits?per_page=5&author={USER}") or []:
@@ -236,6 +259,7 @@ def collect():
     todos.sort(reverse=True)
     email = user.get("email") or (commit_emails.most_common(1)[0][0] if commit_emails else None)
     return dict(user=user, socials=socials, projects=projects, langs=langs, libs=libs,
+                lib_files=lib_files, lang_repos=lang_repos, n_repos=len([r for r in repos if r["size"]]),
                 todos=todos, commits=commits, email=email)
 
 
@@ -282,7 +306,7 @@ def say(y, lines, delay):
 
 def row(y, i, cells, delay):
     """cells: list of (x, text, cls). First cell gets the tree glyph."""
-    pre = "âŽ¿  " if i == 0 else "   "
+    pre = "⎿  " if i == 0 else "   "
     out = f'<g class="ln" style="animation-delay:{delay:.2f}s">'
     for j, (x, txt, cls) in enumerate(cells):
         lead = f'<tspan class="dim">{pre}</tspan>' if j == 0 else ""
@@ -326,7 +350,7 @@ def summary_lines(d):
         parts.append("Builds " + ", ".join(names[:-1]) + (" and " if len(names) > 1 else "") + names[-1] + ".")
     starred = [p for p in projects if p["stargazers_count"]]
     if starred:
-        parts.append(f"Best known for {starred[0]['name']} (â˜…{starred[0]['stargazers_count']}).")
+        parts.append(f"Best known for {starred[0]['name']} (★{starred[0]['stargazers_count']}).")
     latest = max(projects, key=lambda p: p["pushed_at"], default=None)
     if latest:
         parts.append(f"Latest push: {latest['name']}, {ago(latest['pushed_at'])}.")
@@ -353,19 +377,19 @@ def hero(d):
 <text x="452" y="96" class="t or b">Recent activity</text>"""
     y = 118
     for p in recent:
-        n = p["name"] if len(p["name"]) <= 24 else p["name"][:23] + "â€¦"
-        body += f'<text x="452" y="{y}" class="t"><tspan class="b">{e(n)}</tspan><tspan class="dim"> Â· pushed {ago(p["pushed_at"])}</tspan></text>'
+        n = p["name"] if len(p["name"]) <= 24 else p["name"][:23] + "…"
+        body += f'<text x="452" y="{y}" class="t"><tspan class="b">{e(n)}</tspan><tspan class="dim"> · pushed {ago(p["pushed_at"])}</tspan></text>'
         y += 18
     body += f"""
 <line x1="452" y1="172" x2="{W - 44}" y2="172" stroke="#3a3836"/>
 <text x="452" y="194" class="t or b">Stats</text>
-<text x="452" y="214" class="t">â˜… {stars} stars Â· {user["public_repos"]} public repos Â· since {since}</text>
+<text x="452" y="214" class="t">★ {stars} stars · {user["public_repos"]} public repos · since {since}</text>
 {prompt(270, f"who is {first_name(user).lower()}?", .4)}
 {tool(311, "Bash", f"gh api users/{USER}", 1)}
-<g class="ln" style="animation-delay:1s"><text x="42" y="333" class="t dim">âŽ¿  "{e(sentence(bio, 36))}" Â· {user["public_repos"]} public repos Â· on GitHub since {since}</text></g>
+<g class="ln" style="animation-delay:1s"><text x="42" y="333" class="t dim">⎿  "{e(sentence(bio, 36))}" · {user["public_repos"]} public repos · on GitHub since {since}</text></g>
 {say(376, answer, 1.8)}"""
     y = 376 + 22 * len(answer) + 22
-    body += f"""<g class="ln" style="animation-delay:2.6s"><text x="42" y="{y}" class="t or">â†“ pick a prompt below to keep going</text></g>
+    body += f"""<g class="ln" style="animation-delay:2.6s"><text x="42" y="{y}" class="t or">↓ pick a prompt below to keep going</text></g>
 <g class="ln" style="animation-delay:3s">
 <line x1="24" y1="{y + 32}" x2="{W - 24}" y2="{y + 32}" stroke="#4a4846"/>
 <text x="24" y="{y + 56}" class="t dim">&gt;</text>
@@ -373,81 +397,133 @@ def hero(d):
 <line x1="24" y1="{y + 70}" x2="{W - 24}" y2="{y + 70}" stroke="#4a4846"/>
 <text x="24" y="{y + 94}" class="t dim">? for shortcuts</text>
 </g>"""
-    return window(f"claude â€” ~/{USER}", y + 116, body)
+    return window(f"claude — ~/{USER}", y + 116, body)
 
 
 def projects_panel(d):
     body = prompt(70, "/projects") + tool(110, "Bash", f"gh repo list {USER} --source")
     y = 132
     for i, p in enumerate(d["projects"]):
-        n = p["name"] if len(p["name"]) <= 38 else p["name"][:37] + "â€¦"
+        n = p["name"] if len(p["name"]) <= 38 else p["name"][:37] + "…"
         body += row(y, i, [(42, f'<tspan class="b">{e(n)}</tspan>', ""),
-                           (430, f'â˜… {p["stargazers_count"]}', "or"),
+                           (430, f'★ {p["stargazers_count"]}', "or"),
                            (500, e(p["language"] or "-"), "dim"),
                            (640, f'pushed {ago(p["pushed_at"])}', "dim")], .9 + .06 * i)
         y += 21
-    return window("claude â€” /projects", y + 18, body)
+    return window("claude — /projects", y + 18, body)
 
 
 def card(p):
     w, h = 432, 150
     lang = p["language"] or "-"
     lines = clip(wrap(p["text"], 44), 3, 44)
-    n = p["name"] if len(p["name"]) <= 34 else p["name"][:33] + "â€¦"
+    n = p["name"] if len(p["name"]) <= 34 else p["name"][:33] + "…"
     t = f"""<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}" role="img" aria-label="{e(p['name'])}">
 {style()}
 <rect x=".5" y=".5" width="{w - 1}" height="{h - 1}" rx="8" fill="#1b1a19" stroke="#3a3836"/>
 <circle cx="22" cy="27" r="4" fill="#7fb77e"/>
 <text x="34" y="32" class="t b">{e(n)}</text>
-<text x="{w - 18}" y="32" text-anchor="end" class="t or">â˜… {p["stargazers_count"]}</text>"""
+<text x="{w - 18}" y="32" text-anchor="end" class="t or">★ {p["stargazers_count"]}</text>"""
     for i, l in enumerate(lines):
-        t += f'<text x="34" y="{56 + 20 * i}" class="t"><tspan class="dim">{"âŽ¿ " if i == 0 else "  "}</tspan>{e(l)}</text>'
+        t += f'<text x="34" y="{56 + 20 * i}" class="t"><tspan class="dim">{"⎿ " if i == 0 else "  "}</tspan>{e(l)}</text>'
     t += f"""<circle cx="22" cy="{h - 22}" r="5" fill="{LANG_COLORS.get(lang, '#8b8b8b')}"/>
-<text x="34" y="{h - 17}" class="t s dim">{e(lang)} Â· pushed {ago(p["pushed_at"])}</text>
-<text x="{w - 18}" y="{h - 17}" text-anchor="end" class="t s or">open â†—</text>
+<text x="34" y="{h - 17}" class="t s dim">{e(lang)} · pushed {ago(p["pushed_at"])}</text>
+<text x="{w - 18}" y="{h - 17}" text-anchor="end" class="t s or">open ↗</text>
 </svg>"""
     return t
 
 
-def stack_panel(d):
-    langs, libs = d["langs"], d["libs"]
-    total = sum(langs.values()) or 1
-    items = langs.most_common()
-    main, other = items[:5], sum(v for _, v in items[5:])
-    if other:
-        main.append(("other", other))
-    body = prompt(70, "/stack") + tool(110, "Bash", f'gh api "repos/{USER}/*/languages"')
-    y = 132
-    for i, (k, v) in enumerate(main):
-        f = v / total
-        pct = "<1%" if f < .01 else f"{f * 100:.0f}%"
-        body += (row(y, i, [(42, f'<tspan class="b">{e(k)}</tspan>', ""), (620, pct, "dim")], .9 + .1 * i)
-                 .replace("</g>", f'<rect x="210" y="{y - 11}" width="{max(3, 340 * f):.1f}" height="11" rx="2" fill="{LANG_COLORS.get(k, "#8b8b8b")}"/></g>'))
+LIB_GROUPS = [
+    ("ML", {"torch", "tensorflow", "keras", "jax", "scikit-learn", "xgboost", "lightgbm", "ultralytics",
+            "transformers", "weaver", "torchvision", "timm", "gymnasium", "gym", "stable_baselines3"}),
+    ("Science", {"numpy", "scipy", "pandas", "matplotlib", "seaborn", "uproot", "awkward", "vector",
+                 "sympy", "numba", "h5py", "tqdm"}),
+    ("Geo / CV", {"opencv", "rasterio", "pyproj", "shapely", "gdal", "osgeo", "pillow", "skimage",
+                  "geopandas"}),
+    ("LLM / web", {"openai", "anthropic", "groq", "httpx", "requests", "playwright", "beautifulsoup4",
+                   "ddgs", "google-adk", "flask", "fastapi", "uvicorn", "streamlit"}),
+]
+
+
+def group_of(lib):
+    for name, members in LIB_GROUPS:
+        if lib in members:
+            return name
+    return "Tooling"
+
+
+def hist_rows(y, items, total, unit, color_of, delay0, bar_x=230, bar_w=420, label_w=22):
+    """Horizontal histogram: label, bar scaled to the max, value + share on the right."""
+    out = ""
+    peak = max(v for _, v in items) if items else 1
+    for i, (k, v) in enumerate(items):
+        f = v / peak
+        share = v / total if total else 0
+        pct = "<1%" if share < .01 else f"{share * 100:.0f}%"
+        lbl = k if len(k) <= label_w else k[:label_w - 1] + "…"
+        out += (f'<g class="ln" style="animation-delay:{delay0 + .06 * i:.2f}s">'
+                f'<text x="42" y="{y}" class="t"><tspan class="dim">{"⎿  " if i == 0 else "   "}</tspan><tspan class="b">{e(lbl)}</tspan></text>'
+                f'<rect x="{bar_x}" y="{y - 11}" width="{bar_w}" height="11" rx="2" fill="#2a2826"/>'
+                f'<rect x="{bar_x}" y="{y - 11}" width="{max(3, bar_w * f):.1f}" height="11" rx="2" fill="{color_of(k)}"/>'
+                f'<text x="{bar_x + bar_w + 14}" y="{y}" class="t dim">{e(unit(v))}</text>'
+                f'<text x="{W - 24}" y="{y}" text-anchor="end" class="t dim">{e(pct)}</text></g>')
         y += 21
+    return out, y
+
+
+def kb(n):
+    return f"{n / 1024:,.0f} KB" if n >= 1024 else f"{n} B"
+
+
+def stack_panel(d):
+    langs, libs, lib_files, n_repos = d["langs"], d["libs"], d["lib_files"], d["n_repos"]
+    body = prompt(70, "/stack") + tool(110, "Bash", f'gh api "repos/{USER}/*/languages"  # {n_repos} repos')
+    y = 132
+    items = langs.most_common()
+    main = items[:6]
+    rest = sum(v for _, v in items[6:])
+    if rest:
+        main.append(("other", rest))
+    rows, y = hist_rows(y, main, sum(langs.values()), kb, lambda k: LANG_COLORS.get(k, "#8b8b8b"), .9)
+    body += rows
     if libs:
         y += 22
-        body += tool(y, "Grep", 'pattern: "^(import|from) " **/*.py', 1.5)
+        body += tool(y, "Grep", f'"^(import|from) " **/*.py **/*.ipynb  # imports per repo', 1.4)
         y += 22
-        top = libs.most_common(12)
-        for i in range(0, len(top), 3):
-            cells = [(42 + 270 * j, f'<tspan class="b">{e(k)}</tspan><tspan class="dim">  {c} repo{"s" if c > 1 else ""}</tspan>', "")
-                     for j, (k, c) in enumerate(top[i:i + 3])]
-            body += row(y, i // 3, cells, 1.6 + .08 * i)
-            y += 21
+        top = sorted(libs.items(), key=lambda kv: (-kv[1], -lib_files[kv[0]], kv[0]))[:14]
+        colors = {"ML": "#d97757", "Science": "#82aaff", "Geo / CV": "#7fb77e", "LLM / web": "#c792ea", "Tooling": "#8b8b8b"}
+        rows, y = hist_rows(y, top, n_repos, lambda v: f"{v}/{n_repos} repos",
+                            lambda k: colors[group_of(k)], 1.5)
+        body += rows
+        y += 8
+        lx = 42
+        body += f'<g class="ln" style="animation-delay:2.3s">'
+        for name, c in colors.items():
+            body += f'<rect x="{lx + 30}" y="{y + 1}" width="10" height="10" rx="2" fill="{c}"/><text x="{lx + 46}" y="{y + 11}" class="t s dim">{e(name)}</text>'
+            lx += 46 + 8 * len(name) + 22
+        body += "</g>"
+        y += 22
     y += 22
-    if main:
-        tl = [k for k, _ in libs.most_common(3)]
-        msg = f"Mostly {main[0][0]}" + (f", built on {', '.join(tl)}." if tl else ".")
-        body += say(y, clip(wrap(msg, 70), 2, 70), 2.4)
-        y += 22
-    return window("claude â€” /stack", y + 30, body)
+    if langs:
+        groups = Counter()
+        for k, v in libs.items():
+            groups[group_of(k)] += v
+        heavy = [g for g, _ in groups.most_common(2) if g != "Tooling"]
+        top3 = [k for k, _ in sorted(libs.items(), key=lambda kv: -kv[1])[:3]]
+        msg = f"Mostly {items[0][0]} ({items[0][1] * 100 // max(1, sum(langs.values()))}% of code)"
+        msg += f", heavy on {' and '.join(heavy)}" if heavy else ""
+        msg += f". Most used: {', '.join(top3)}." if top3 else "."
+        lines = clip(wrap(msg, 70), 2, 70)
+        body += say(y, lines, 2.5)
+        y += 22 * (len(lines) - 1)
+    return window("claude — /stack", y + 30, body)
 
 
 def now_panel(d):
     body = prompt(70, "/now") + tool(110, "Bash", f"git log --all-repos --author={USER} -n 5")
     y = 132
     for i, (date, repo, msg) in enumerate(d["commits"][:5]):
-        m = msg if len(msg) <= 54 else msg[:53] + "â€¦"
+        m = msg if len(msg) <= 54 else msg[:53] + "…"
         body += row(y, i, [(42, f'<tspan class="b">{e(repo[:22])}</tspan>', ""), (270, e(m), "dim"),
                            (W - 24, ago(date), "dim\" text-anchor=\"end")], .9 + .08 * i)
         y += 21
@@ -458,9 +534,9 @@ def now_panel(d):
         y += 22
         for i, (_, repo, t) in enumerate(todos):
             line = clip(wrap(t, 58), 1, 58)[0]
-            body += row(y, i, [(42, "â˜", ""), (86, e(line), "b"), (W - 24, e(repo[:22]), "dim\" text-anchor=\"end")], 1.5 + .1 * i)
+            body += row(y, i, [(42, "☐", ""), (86, e(line), "b"), (W - 24, e(repo[:22]), "dim\" text-anchor=\"end")], 1.5 + .1 * i)
             y += 21
-    return window("claude â€” /now", y + 18, body)
+    return window("claude — /now", y + 18, body)
 
 
 def contributions_panel():
@@ -480,7 +556,7 @@ def contributions_panel():
     body += "".join(f'<rect x="{82 + i * 16}" y="{yb - 10}" width="12" height="12" rx="2" fill="{c}"/>' for i, c in enumerate(pal))
     body += f'<text x="{166}" y="{yb}" class="t s dim">more</text></g>'
     body += say(yb + 40, [f"{total} contributions in the last year."], 1.6)
-    return window("claude â€” /contributions", yb + 70, body)
+    return window("claude — /contributions", yb + 70, body)
 
 
 def contacts(d):
@@ -510,7 +586,7 @@ def contact_panel(d):
     if d["user"].get("hireable"):
         body += say(y, ["Open to work."], 1.5)
         y += 22
-    return window("claude â€” /contact", y + 18, body)
+    return window("claude — /contact", y + 18, body)
 
 
 def readme_md(d):
@@ -519,11 +595,11 @@ def readme_md(d):
     for i in range(0, len(ps), 2):
         cards += "".join(f'<a href="{p["html_url"]}"><img src="assets/cards/{p["name"]}.svg" width="49%" alt="{e(p["name"])}: {e(p["text"][:120])}"/></a>\n'
                          for p in ps[i:i + 2])
-    links = " Â· ".join(f"[{k}]({u})" for k, _, u in contacts(d) if u)
+    links = " · ".join(f"[{k}]({u})" for k, _, u in contacts(d) if u)
     return f"""<img src="assets/terminal.svg" alt="Claude Code style terminal: who is {e(first_name(d['user']))}" width="100%"/>
 
 <details>
-<summary><code>â¯ /projects</code> &nbsp;what I've built</summary>
+<summary><code>/projects</code> &nbsp;what I've built</summary>
 <br>
 <img src="assets/projects.svg" width="100%" alt="project list"/>
 
@@ -531,25 +607,25 @@ def readme_md(d):
 </details>
 
 <details>
-<summary><code>â¯ /stack</code> &nbsp;what I build with</summary>
+<summary><code>/stack</code> &nbsp;what I build with</summary>
 <br>
 <img src="assets/stack.svg" width="100%" alt="languages and libraries"/>
 </details>
 
 <details>
-<summary><code>â¯ /now</code> &nbsp;what I'm up to</summary>
+<summary><code>/now</code> &nbsp;what I'm up to</summary>
 <br>
 <img src="assets/now.svg" width="100%" alt="recent commits and open todos"/>
 </details>
 
 <details>
-<summary><code>â¯ /contributions</code> &nbsp;the green squares, but orange</summary>
+<summary><code>/contributions</code> &nbsp;the green squares, but orange</summary>
 <br>
 <img src="assets/contributions.svg" width="100%" alt="contribution graph"/>
 </details>
 
 <details>
-<summary><code>â¯ /contact</code> &nbsp;get in touch</summary>
+<summary><code>/contact</code> &nbsp;get in touch</summary>
 <br>
 <img src="assets/contact.svg" width="100%" alt="contact"/>
 
