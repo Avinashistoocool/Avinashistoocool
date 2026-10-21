@@ -44,8 +44,9 @@
 <details>
 <summary><code>/support</code> &nbsp;buy me a coffee</summary>
 <br>
-<img src="assets/support.svg" width="100%" alt="why I build, and where support goes"/>
+<a href="https://buymeacoffee.com/avinashistoocool"><img src="assets/support.svg" width="100%" alt="why I build, and where support goes"/></a>
 
+[Buy me a coffee](https://buymeacoffee.com/avinashistoocool)
 </details>
 
 <sub>Generated from my repositories by <code>scripts/build.py</code>, refreshed by GitHub Actions.</sub>

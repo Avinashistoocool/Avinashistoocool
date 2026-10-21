@@ -589,8 +589,8 @@ def contact_panel(d):
     return window("claude — /contact", y + 18, body)
 
 
-# Paste your Buy Me a Coffee URL here (or set the SUPPORT_URL env var / repo variable).
-SUPPORT_URL = os.environ.get("SUPPORT_URL", "")
+# Buy Me a Coffee URL (a SUPPORT_URL env var / repo variable overrides it).
+SUPPORT_URL = os.environ.get("SUPPORT_URL") or "https://buymeacoffee.com/avinashistoocool"
 
 SUPPORT_WHY = [
     "I build things to understand them: models that read particle jets,",
