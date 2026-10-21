@@ -41,4 +41,11 @@
 [mail](mailto:ph1251520@iitd.ac.in) · [linkedin](https://www.linkedin.com/in/avinashistoocool) · [github](https://github.com/Avinashistoocool)
 </details>
 
+<details>
+<summary><code>/support</code> &nbsp;buy me a coffee</summary>
+<br>
+<img src="assets/support.svg" width="100%" alt="why I build, and where support goes"/>
+
+</details>
+
 <sub>Generated from my repositories by <code>scripts/build.py</code>, refreshed by GitHub Actions.</sub>

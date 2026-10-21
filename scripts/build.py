@@ -589,6 +589,47 @@ def contact_panel(d):
     return window("claude — /contact", y + 18, body)
 
 
+# Paste your Buy Me a Coffee URL here (or set the SUPPORT_URL env var / repo variable).
+SUPPORT_URL = os.environ.get("SUPPORT_URL", "")
+
+SUPPORT_WHY = [
+    "I build things to understand them: models that read particle jets,",
+    "maps of ice on the Moon, rescue drone swarms, and small tools that",
+    "help students reach researchers. All of it is open source, and all",
+    "of it runs on a student laptop.",
+]
+SUPPORT_USES = [
+    "GPU hours for bigger training runs",
+    "datasets, storage and cloud compute",
+    "parts for robotics and drone builds",
+    "keeping my tools free for other students",
+]
+
+
+def support_panel(d):
+    n = len(d["projects"])
+    body = prompt(70, "/support") + tool(110, "Read", "WHY.md")
+    y = 132
+    for i, l in enumerate(SUPPORT_WHY):
+        body += row(y, i, [(42, e(l), "")], .9 + .08 * i)
+        y += 21
+    y += 22
+    body += tool(y, "Read", "where-it-goes.md", 1.4)
+    y += 22
+    for i, l in enumerate(SUPPORT_USES):
+        body += row(y, i, [(42, '<tspan class="or">$</tspan>', ""), (70, e(l), "b")], 1.5 + .08 * i)
+        y += 21
+    y += 22
+    lines = [f"{n} public projects so far, each one shared as it's built.",
+             "A coffee goes straight into the next experiment. Thank you."]
+    body += say(y, lines, 2.1)
+    y += 22 * len(lines) + 10
+    link = re.sub(r"^https?://(www\.)?", "", SUPPORT_URL).rstrip("/") if SUPPORT_URL else "buy me a coffee: link coming soon"
+    body += (f'<g class="ln" style="animation-delay:2.6s"><text x="42" y="{y}" class="t or">'
+             f'↓ {e(link)}</text></g>')
+    return window("claude — /support", y + 28, body)
+
+
 def readme_md(d):
     cards = ""
     ps = d["projects"]
@@ -632,6 +673,13 @@ def readme_md(d):
 {links}
 </details>
 
+<details>
+<summary><code>/support</code> &nbsp;buy me a coffee</summary>
+<br>
+{f'<a href="{SUPPORT_URL}">' if SUPPORT_URL else ''}<img src="assets/support.svg" width="100%" alt="why I build, and where support goes"/>{'</a>' if SUPPORT_URL else ''}
+{f'{chr(10)}[Buy me a coffee]({SUPPORT_URL})' if SUPPORT_URL else ''}
+</details>
+
 <sub>Generated from my repositories by <code>scripts/build.py</code>, refreshed by GitHub Actions.</sub>
 """
 
@@ -644,7 +692,8 @@ def main():
     for f in cards_dir.glob("*.svg"):
         f.unlink()
     files = {"terminal.svg": hero(d), "projects.svg": projects_panel(d), "stack.svg": stack_panel(d),
-             "now.svg": now_panel(d), "contributions.svg": contributions_panel(), "contact.svg": contact_panel(d)}
+             "now.svg": now_panel(d), "contributions.svg": contributions_panel(), "contact.svg": contact_panel(d),
+             "support.svg": support_panel(d)}
     for p in d["projects"]:
         files[f"cards/{p['name']}.svg"] = card(p)
     for k, v in files.items():
