@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="720" viewBox="0 0 880 720" role="img" aria-label="Avinash - Claude Code style terminal intro">
+  <style>
+    .t   { font-family: 'JetBrains Mono','SFMono-Regular',Menlo,Consolas,'Liberation Mono',monospace; font-size: 14px; fill: #e6e6e6; white-space: pre; }
+    .dim { fill: #8b8b8b; }
+    .or  { fill: #d97757; }
+    .orb { fill: #d97757; font-weight: 700; }
+    .b   { font-weight: 700; }
+    .gr  { fill: #7fb77e; }
+    .bl  { fill: #82aaff; }
+    .yl  { fill: #e5c07b; }
+    .pk  { fill: #c792ea; }
+    .ln  { opacity: 0; animation: show .01s forwards; }
+    @keyframes show { to { opacity: 1; } }
+    .cur { animation: blink 1.1s steps(1) infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+  </style>
+
+  <rect x="0.5" y="0.5" width="879" height="719" rx="12" fill="#1a1a1a" stroke="#333"/>
+  <rect x="0.5" y="0.5" width="879" height="34" rx="12" fill="#262626"/>
+  <rect x="0.5" y="22" width="879" height="13" fill="#262626"/>
+  <circle cx="22" cy="18" r="6" fill="#ff5f57"/><circle cx="42" cy="18" r="6" fill="#febc2e"/><circle cx="62" cy="18" r="6" fill="#28c840"/>
+  <text x="440" y="23" text-anchor="middle" class="t dim" style="font-size:12px">avinash@iitd: ~/github — claude</text>
+
+  <rect x="24" y="52" width="480" height="92" rx="6" fill="none" stroke="#d97757" stroke-width="1.2"/>
+  <text x="40" y="80" class="t"><tspan class="orb">✻</tspan> Welcome to <tspan class="b">Avinash's</tspan> GitHub!</text>
+  <text x="62" y="106" class="t dim">/help for help, /status for your current setup</text>
+  <text x="62" y="128" class="t dim">cwd: /home/avinash/iit-delhi/physics</text>
+
+  <g class="ln" style="animation-delay:.4s">
+    <text x="24" y="178" class="t"><tspan class="dim">&gt;</tspan> who are you?</text>
+  </g>
+  <g class="ln" style="animation-delay:.9s">
+    <text x="24" y="208" class="t"><tspan class="or">⏺</tspan> Hi, I'm <tspan class="b">Avinash</tspan> 👋 Physics student @ <tspan class="b">IIT Delhi</tspan>, building at the</text>
+    <text x="44" y="228" class="t">intersection of <tspan class="yl">deep learning</tspan>, <tspan class="yl">physics</tspan> and <tspan class="yl">computer vision</tspan> (and some CAD).</text>
+  </g>
+
+  <g class="ln" style="animation-delay:1.5s">
+    <text x="24" y="262" class="t"><tspan class="or">⏺</tspan> <tspan class="b">Read</tspan>(<tspan class="bl">now.md</tspan>)</text>
+    <text x="44" y="284" class="t"><tspan class="dim">⎿</tspan>  🔭 Transformer architectures for particle physics (jet classification)</text>
+    <text x="44" y="304" class="t">   → shifting to a <tspan class="pk">Mixture-of-Experts</tspan> architecture</text>
+    <text x="44" y="324" class="t">   🛰️ Remote sensing + robotics</text>
+    <text x="44" y="344" class="t">   🧠 PyTorch internals · novel architectures · agentic systems · CV</text>
+  </g>
+
+  <g class="ln" style="animation-delay:2.3s">
+    <text x="24" y="378" class="t"><tspan class="or">⏺</tspan> <tspan class="b">Bash</tspan>(<tspan class="bl">ls ~/projects --featured</tspan>)</text>
+    <text x="44" y="400" class="t"><tspan class="dim">⎿</tspan>  <tspan class="gr b">Gated-Dual-Stream-Particle-Transformer/</tspan></text>
+    <text x="74" y="420" class="t dim">rethinks pairwise interactions in transformers for jet classification</text>
+    <text x="74" y="444" class="t gr b">ISRO-BAH-26/</text>
+    <text x="74" y="464" class="t dim">lunar subsurface ice mapping from radar polarimetry + rover trajectory planning</text>
+    <text x="74" y="488" class="t gr b">Jet-Class-Particle-Visualizer/</text>
+    <text x="74" y="508" class="t dim">modular alternative to ParT, fusing particle + interaction info differently</text>
+  </g>
+
+  <g class="ln" style="animation-delay:3.1s">
+    <text x="24" y="542" class="t"><tspan class="or">⏺</tspan> <tspan class="b">Update Todos</tspan></text>
+    <text x="44" y="564" class="t"><tspan class="dim">⎿</tspan>  <tspan class="gr">☒</tspan> <tspan class="dim">GDS-ParT on JetClass-10M: 84.8% acc, 0.985 AUC (ParT: 85.0%, 0.986)</tspan></text>
+    <text x="74" y="584" class="t"><tspan class="or">☐</tspan> <tspan class="b">Move to a Mixture-of-Experts architecture</tspan></text>
+    <text x="74" y="604" class="t">☐ Ship more physics × ML × CV</text>
+  </g>
+
+  <g class="ln" style="animation-delay:3.7s">
+    <text x="24" y="636" class="t"><tspan class="dim">tech:</tspan> <tspan class="yl">Python</tspan> · <tspan class="or">PyTorch</tspan> · <tspan class="bl">OpenCV</tspan> · <tspan class="pk">NumPy</tspan>   <tspan class="dim">mail: ph1251520@physics.iitd.ac.in</tspan></text>
+  </g>
+
+  <g class="ln" style="animation-delay:4.1s">
+    <rect x="24" y="652" width="832" height="36" rx="6" fill="none" stroke="#555"/>
+    <text x="40" y="675" class="t dim">&gt;</text>
+    <rect x="58" y="662" width="9" height="17" fill="#e6e6e6" class="cur"/>
+    <text x="24" y="708" class="t dim" style="font-size:12px">? for shortcuts</text>
+    <text x="856" y="708" text-anchor="end" class="t or" style="font-size:12px">✻ open to research collaborations</text>
+  </g>
+</svg>
