@@ -1,7 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="880" height="600" viewBox="0 0 880 600" role="img" aria-label="Claude Code style terminal: who is Avinash">
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="600" viewBox="0 0 880 600" role="img" aria-label="claude — ~/Avinashistoocool">
 <style>
 .t{font-family:'JetBrains Mono','SFMono-Regular',Menlo,Consolas,'Liberation Mono',monospace;font-size:14px;fill:#e6e6e6;white-space:pre}
-.s{font-size:12px}.dim{fill:#8b8b8b}.or{fill:#d97757}.b{font-weight:700}.gr{fill:#7fb77e}
+.s{font-size:12.5px}.dim{fill:#8b8b8b}.or{fill:#d97757}.b{font-weight:700}
+.gr{fill:#7fb77e}.strike{text-decoration:line-through}
 .ln{opacity:0;animation:show .01s forwards}@keyframes show{to{opacity:1}}
 .cur{animation:blink 1.1s steps(1) infinite}@keyframes blink{50%{opacity:0}}
 </style>
@@ -9,7 +10,7 @@
 <path d="M.5 34.5V10.5A10 10 0 0 1 10.5 .5H869.5A10 10 0 0 1 879.5 10.5V34.5Z" fill="#232120"/>
 <line x1="0" y1="34.5" x2="880" y2="34.5" stroke="#3a3836"/>
 <circle cx="20" cy="17" r="6" fill="#ff5f57"/><circle cx="40" cy="17" r="6" fill="#febc2e"/><circle cx="60" cy="17" r="6" fill="#28c840"/>
-<text x="440.0" y="22" text-anchor="middle" class="t s dim">claude ? ~/Avinashistoocool</text>
+<text x="440.0" y="22" text-anchor="middle" class="t s dim">claude — ~/Avinashistoocool</text>
 
 <rect x="24" y="62" width="832" height="166" rx="8" fill="none" stroke="#d97757" stroke-width="1.2"/>
 <rect x="38" y="52" width="104" height="20" fill="#1b1a19"/>
@@ -19,36 +20,21 @@
 <text x="230" y="200" text-anchor="middle" class="t dim">A cool dude starting out ;D</text>
 <text x="230" y="218" text-anchor="middle" class="t s dim">~/iit-delhi/physics</text>
 <line x1="430" y1="80" x2="430" y2="212" stroke="#3a3836"/>
-<text x="452" y="96" class="t or b">Recent activity</text>
-<text x="452" y="118" class="t"><tspan class="b">Gated-Dual-Stream-Particle-Transformer</tspan></text>
-<text x="452" y="136" class="t s dim">pushed today ? 84.8% acc on JetClass-10M</text>
-<text x="452" y="156" class="t"><tspan class="b">Agnostos-v2</tspan><tspan class="dim"> ? pushed this week</tspan></text>
+<text x="452" y="96" class="t or b">Recent activity</text><text x="452" y="118" class="t"><tspan class="b">Gated-Dual-Stream-Particl…</tspan><tspan class="dim"> · pushed today</tspan></text><text x="452" y="138" class="t"><tspan class="b">Agnostos-v2</tspan><tspan class="dim"> · pushed 4d ago</tspan></text>
 <line x1="452" y1="170" x2="836" y2="170" stroke="#3a3836"/>
 <text x="452" y="192" class="t or b">Stats</text>
-<text x="452" y="212" class="t">? 33 stars ? 9 public repos ? since 2025</text>
-
-<g class="ln" style="animation-delay:.4s"><text x="24" y="270" class="t"><tspan class="dim">&gt; </tspan><tspan class="b">who is avinash?</tspan></text></g>
-<g class="ln" style="animation-delay:1s">
-<circle cx="29" cy="306" r="4" fill="#7fb77e"/>
-<text x="42" y="311" class="t"><tspan class="b">Bash</tspan>(gh api users/Avinashistoocool)</text>
-<text x="42" y="333" class="t dim">?  "A cool dude starting out ;D" ? 9 public repos ? IIT Delhi</text>
-</g>
-<g class="ln" style="animation-delay:1.8s">
-<circle cx="29" cy="371" r="4" fill="#e6e6e6"/>
-<text x="42" y="376" class="t b">Physics student at IIT Delhi who builds ML for physics.</text>
-<text x="42" y="398" class="t b">A gated dual-stream transformer for jet tagging, lunar ice</text>
-<text x="42" y="420" class="t b">maps from Chandrayaan-2 radar, rescue drone swarms, and an</text>
-<text x="42" y="442" class="t b">LLM outreach CLI (?33). Next up: Mixture-of-Experts.</text>
-</g>
-<g class="ln" style="animation-delay:2.6s">
-<text x="42" y="484" class="t or">? pick a prompt below to keep going</text>
-</g>
+<text x="452" y="212" class="t">★ 33 stars · 9 public repos · since 2025</text>
+<g class="ln" style="animation-delay:0.4s"><text x="24" y="270" class="t"><tspan class="dim">&gt; </tspan><tspan class="b">who is avinash?</tspan></text></g>
+<g class="ln" style="animation-delay:1s"><circle cx="29" cy="306" r="4" fill="#7fb77e"/><text x="42" y="311" class="t"><tspan class="b">Bash</tspan>(gh api users/Avinashistoocool)</text></g>
+<g class="ln" style="animation-delay:1s"><text x="42" y="333" class="t dim">⎿  "A cool dude starting out ;D" · 9 public repos · on GitHub since 2025</text></g>
+<g class="ln" style="animation-delay:1.8s"><circle cx="29" cy="371" r="4" fill="#e6e6e6"/><text x="42" y="376" class="t b">Physics student at IIT Delhi who builds ML for physics:</text><text x="42" y="398" class="t b">a gated dual-stream transformer for jet tagging, lunar ice</text><text x="42" y="420" class="t b">maps from Chandrayaan-2 radar and rescue drone swarms.</text><text x="42" y="442" class="t b">Best known for Agnostos-v2 (★33).</text></g>
+<g class="ln" style="animation-delay:2.6s"><text x="42" y="484" class="t or">↓ pick a prompt below to keep going</text></g>
 <g class="ln" style="animation-delay:3s">
 <line x1="24" y1="516" x2="856" y2="516" stroke="#4a4846"/>
 <text x="24" y="540" class="t dim">&gt;</text>
 <rect x="42" y="527" width="9" height="17" fill="#e6e6e6" class="cur"/>
 <line x1="24" y1="554" x2="856" y2="554" stroke="#4a4846"/>
 <text x="24" y="578" class="t dim">? for shortcuts</text>
-<text x="856" y="578" text-anchor="end" class="t s or">? open to research collaborations</text>
+<text x="856" y="578" text-anchor="end" class="t s or">✻ open to research collaborations</text>
 </g>
 </svg>
