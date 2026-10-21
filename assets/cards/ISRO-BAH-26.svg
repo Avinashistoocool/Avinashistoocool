@@ -9,7 +9,7 @@
 <rect x=".5" y=".5" width="431" height="149" rx="8" fill="#1b1a19" stroke="#3a3836"/>
 <circle cx="22" cy="27" r="4" fill="#7fb77e"/>
 <text x="34" y="32" class="t b">ISRO-BAH-26</text>
-<text x="414" y="32" text-anchor="end" class="t or">★ 0</text><text x="34" y="56" class="t"><tspan class="dim">⎿ </tspan>Lunar ice probability map from Chandrayaan-2</text><text x="34" y="76" class="t"><tspan class="dim">  </tspan>DFSAR radar, slope cost map from LOLA DEM,</text><text x="34" y="96" class="t"><tspan class="dim">  </tspan>A* rover path into Faustini crater.</text><circle cx="22" cy="128" r="5" fill="#3572A5"/>
-<text x="34" y="133" class="t s dim">Python · pushed 3mo ago</text>
-<text x="414" y="133" text-anchor="end" class="t s or">open ↗</text>
+<text x="414" y="32" text-anchor="end" class="t or">â˜… 0</text><text x="34" y="56" class="t"><tspan class="dim">âŽ¿ </tspan>This project maps subsurface lunar ice using</text><text x="34" y="76" class="t"><tspan class="dim">  </tspan>Chandrayaan-2 DFSAR radar polarimetry. It</text><text x="34" y="96" class="t"><tspan class="dim">  </tspan>identifies safe landing zones near doublyâ€¦</text><circle cx="22" cy="128" r="5" fill="#3572A5"/>
+<text x="34" y="133" class="t s dim">Python Â· pushed 3mo ago</text>
+<text x="414" y="133" text-anchor="end" class="t s or">open â†—</text>
 </svg>
