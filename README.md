@@ -6,6 +6,7 @@
 <img src="assets/projects.svg" width="100%" alt="project list"/>
 
 <a href="https://github.com/Avinashistoocool/Agnostos-v2"><img src="assets/cards/Agnostos-v2.svg" width="49%" alt="Agnostos-v2: Agnostos: AI research internship outreach CLI. Finds professors matching your resume, drafts honest cold emails, sends t"/></a>
+<a href="https://github.com/Avinashistoocool/Avinashistoocool.github.io"><img src="assets/cards/Avinashistoocool.github.io.svg" width="49%" alt="Avinashistoocool.github.io: Personal site, generated from my GitHub repos"/></a>
 <a href="https://github.com/Avinashistoocool/Gated-Dual-Stream-Particle-Transformer"><img src="assets/cards/Gated-Dual-Stream-Particle-Transformer.svg" width="49%" alt="Gated-Dual-Stream-Particle-Transformer: A custom PyTorch architecture for jet classification that rethinks how pairwise particle physics enters a transformer."/></a>
 <a href="https://github.com/Avinashistoocool/asclepius"><img src="assets/cards/asclepius.svg" width="49%" alt="asclepius: RescueSwarm - Phase 1 Simulation. Core logic for: 1. FleetManager - polygon -&gt; parallel search lanes, balanced across N "/></a>
 <a href="https://github.com/Avinashistoocool/eraksha-hackathon"><img src="assets/cards/eraksha-hackathon.svg" width="49%" alt="eraksha-hackathon: IoT Flow Generator - IMPROVED VERSION. Simulates IoT device traffic with clear output"/></a>
