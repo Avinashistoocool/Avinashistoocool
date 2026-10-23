@@ -1,7 +1,7 @@
 name: refresh profile panels
 on:
   schedule:
-    - cron: "17 3 * * *"
+    - cron: "17 * * * *"
   workflow_dispatch:
   push:
     paths: ["scripts/build.py", ".github/workflows/refresh.yml"]
