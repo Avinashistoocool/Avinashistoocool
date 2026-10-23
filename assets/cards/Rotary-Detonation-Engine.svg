@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="432" height="150" viewBox="0 0 432 150" role="img" aria-label="Rotary-Detonation-Engine">
+<style>
+.t{font-family:'JetBrains Mono','SFMono-Regular',Menlo,Consolas,'Liberation Mono',monospace;font-size:14px;fill:#e6e6e6;white-space:pre}
+.s{font-size:12.5px}.dim{fill:#8b8b8b}.or{fill:#d97757}.b{font-weight:700}
+.gr{fill:#7fb77e}.strike{text-decoration:line-through}
+.ln{opacity:0;animation:show .01s forwards}@keyframes show{to{opacity:1}}
+.cur{animation:blink 1.1s steps(1) infinite}@keyframes blink{50%{opacity:0}}
+</style>
+<rect x=".5" y=".5" width="431" height="149" rx="8" fill="#1b1a19" stroke="#3a3836"/>
+<circle cx="22" cy="27" r="4" fill="#7fb77e"/>
+<text x="34" y="32" class="t b">Rotary-Detonation-Engine</text>
+<text x="414" y="32" text-anchor="end" class="t or">★ 0</text><text x="34" y="56" class="t"><tspan class="dim">⎿ </tspan>Planning and visualisation materials for a</text><text x="34" y="76" class="t"><tspan class="dim">  </tspan>university RDE research demonstrator: an</text><text x="34" y="96" class="t"><tspan class="dim">  </tspan>interactive project atlas, a readable…</text><circle cx="22" cy="128" r="5" fill="#e34c26"/>
+<text x="34" y="133" class="t s dim">HTML · pushed today</text>
+<text x="414" y="133" text-anchor="end" class="t s or">open ↗</text>
+</svg>
