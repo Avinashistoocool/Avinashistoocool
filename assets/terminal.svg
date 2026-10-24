@@ -23,11 +23,11 @@
 <text x="452" y="96" class="t or b">Recent activity</text><text x="452" y="118" class="t"><tspan class="b">Agnostos-v2</tspan><tspan class="dim"> · pushed today</tspan></text><text x="452" y="136" class="t"><tspan class="b">Rotary-Detonation-Engine</tspan><tspan class="dim"> · pushed today</tspan></text><text x="452" y="154" class="t"><tspan class="b">ISRO-BAH-26</tspan><tspan class="dim"> · pushed today</tspan></text>
 <line x1="452" y1="172" x2="836" y2="172" stroke="#3a3836"/>
 <text x="452" y="194" class="t or b">Stats</text>
-<text x="452" y="214" class="t">★ 32 stars · 12 public repos · since 2025</text>
+<text x="452" y="214" class="t">★ 28 stars · 12 public repos · since 2025</text>
 <g class="ln" style="animation-delay:0.4s"><text x="24" y="270" class="t"><tspan class="dim">&gt; </tspan><tspan class="b">who is avinash?</tspan></text></g>
 <g class="ln" style="animation-delay:1s"><circle cx="29" cy="306" r="4" fill="#7fb77e"/><text x="42" y="311" class="t"><tspan class="b">Bash</tspan>(gh api users/Avinashistoocool)</text></g>
 <g class="ln" style="animation-delay:1s"><text x="42" y="333" class="t dim">⎿  "A cool dude starting out ;D" · 12 public repos · on GitHub since 2025</text></g>
-<g class="ln" style="animation-delay:1.8s"><circle cx="29" cy="371" r="4" fill="#e6e6e6"/><text x="42" y="376" class="t b">Writes mostly Python. Builds Agnostos-v2,</text><text x="42" y="398" class="t b">Rotary-Detonation-Engine and ISRO-BAH-26. Best known for</text><text x="42" y="420" class="t b">Agnostos-v2 (★32). Latest push: Agnostos-v2, today.</text></g><g class="ln" style="animation-delay:2.6s"><text x="42" y="464" class="t or">↓ pick a prompt below to keep going</text></g>
+<g class="ln" style="animation-delay:1.8s"><circle cx="29" cy="371" r="4" fill="#e6e6e6"/><text x="42" y="376" class="t b">Writes mostly Python. Builds Agnostos-v2,</text><text x="42" y="398" class="t b">Rotary-Detonation-Engine and ISRO-BAH-26. Best known for</text><text x="42" y="420" class="t b">Agnostos-v2 (★28). Latest push: Agnostos-v2, today.</text></g><g class="ln" style="animation-delay:2.6s"><text x="42" y="464" class="t or">↓ pick a prompt below to keep going</text></g>
 <g class="ln" style="animation-delay:3s">
 <line x1="24" y1="496" x2="856" y2="496" stroke="#4a4846"/>
 <text x="24" y="520" class="t dim">&gt;</text>
