@@ -10,6 +10,6 @@
 <circle cx="22" cy="27" r="4" fill="#7fb77e"/>
 <text x="34" y="32" class="t b">Gated-Dual-Stream-Particle-Transf…</text>
 <text x="414" y="32" text-anchor="end" class="t or">★ 0</text><text x="34" y="56" class="t"><tspan class="dim">⎿ </tspan>A custom PyTorch architecture for jet</text><text x="34" y="76" class="t"><tspan class="dim">  </tspan>classification that rethinks how pairwise</text><text x="34" y="96" class="t"><tspan class="dim">  </tspan>particle physics enters a transformer.</text><circle cx="22" cy="128" r="5" fill="#3572A5"/>
-<text x="34" y="133" class="t s dim">Python · pushed 2d ago</text>
+<text x="34" y="133" class="t s dim">Python · pushed 3d ago</text>
 <text x="414" y="133" text-anchor="end" class="t s or">open ↗</text>
 </svg>
