@@ -9,7 +9,7 @@
 <rect x=".5" y=".5" width="431" height="149" rx="8" fill="#1b1a19" stroke="#3a3836"/>
 <circle cx="22" cy="27" r="4" fill="#7fb77e"/>
 <text x="34" y="32" class="t b">GDS-parT-MoE</text>
-<text x="414" y="32" text-anchor="end" class="t or">★ 0</text><text x="34" y="56" class="t"><tspan class="dim">⎿ </tspan>Per-particle Mixture-of-Experts for</text><text x="34" y="76" class="t"><tspan class="dim">  </tspan>GDS-ParT: sparse-upcycled MoE jet tagger</text><text x="34" y="96" class="t"><tspan class="dim">  </tspan>(84.8% on JetClass) with mutual-information…</text><circle cx="22" cy="128" r="5" fill="#3572A5"/>
+<text x="414" y="32" text-anchor="end" class="t or">★ 0</text><text x="34" y="56" class="t"><tspan class="dim">⎿ </tspan>Mixture-of-Experts particle transformer for</text><text x="34" y="76" class="t"><tspan class="dim">  </tspan>jet tagging: sparse upcycling, expert</text><text x="34" y="96" class="t"><tspan class="dim">  </tspan>interpretability with mutual information an…</text><circle cx="22" cy="128" r="5" fill="#3572A5"/>
 <text x="34" y="133" class="t s dim">Python · pushed today</text>
 <text x="414" y="133" text-anchor="end" class="t s or">open ↗</text>
 </svg>

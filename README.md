@@ -1,18 +1,24 @@
-<img src="assets/terminal.svg" alt="Claude Code style terminal: who is Avinash" width="100%"/>
+# Avinash Chandra Gupta
+
+Hi, I'm **Avinash Chandra Gupta** (Avinash Gupta), a physics student at IIT Delhi. I build machine learning for particle physics,
+drone swarms and lunar science, plus open-source research tools.
+[Website](https://avinashistoocool.github.io/) · [LinkedIn](https://www.linkedin.com/in/avinashistoocool) · [X](https://x.com/suprcoolavinash)
+
+<img src="assets/terminal.svg" alt="Avinash Chandra Gupta: Claude Code style terminal, who is Avinash" width="100%"/>
 
 <details>
 <summary><code>/projects</code> &nbsp;what I've built</summary>
 <br>
 <img src="assets/projects.svg" width="100%" alt="project list"/>
 
-<a href="https://github.com/Avinashistoocool/Agnostos-v2"><img src="assets/cards/Agnostos-v2.svg" width="49%" alt="Agnostos-v2: Agnostos: AI research internship outreach CLI. Finds professors matching your resume, drafts honest cold emails, sends t"/></a>
-<a href="https://github.com/Avinashistoocool/Gated-Dual-Stream-Particle-Transformer"><img src="assets/cards/Gated-Dual-Stream-Particle-Transformer.svg" width="49%" alt="Gated-Dual-Stream-Particle-Transformer: A custom PyTorch architecture for jet classification that rethinks how pairwise particle physics enters a transformer."/></a>
-<a href="https://github.com/Avinashistoocool/asclepius"><img src="assets/cards/asclepius.svg" width="49%" alt="asclepius: Search-and-rescue drone swarm tooling for the NIDAR challenge: field coverage planning, fleet management, and onboard pe"/></a>
-<a href="https://github.com/Avinashistoocool/GDS-parT-MoE"><img src="assets/cards/GDS-parT-MoE.svg" width="49%" alt="GDS-parT-MoE: Per-particle Mixture-of-Experts for GDS-ParT: sparse-upcycled MoE jet tagger (84.8% on JetClass) with mutual-information"/></a>
-<a href="https://github.com/Avinashistoocool/ISRO-BAH-26"><img src="assets/cards/ISRO-BAH-26.svg" width="49%" alt="ISRO-BAH-26: This project maps subsurface lunar ice using Chandrayaan-2 DFSAR radar polarimetry. It identifies safe landing zones nea"/></a>
-<a href="https://github.com/Avinashistoocool/AnaTele"><img src="assets/cards/AnaTele.svg" width="49%" alt="AnaTele: Find out why your drone crashed. AnaTele turns ArduPilot logs into an evidence-linked investigation: 3D replay, diagnost"/></a>
+<a href="https://github.com/Avinashistoocool/Agnostos-v2"><img src="assets/cards/Agnostos-v2.svg" width="49%" alt="Agnostos-v2: Research internship cold-email tool: finds professors matching your resume, writes personalised emails, sends them paced"/></a>
+<a href="https://github.com/Avinashistoocool/Avinashistoocool.github.io"><img src="assets/cards/Avinashistoocool.github.io.svg" width="49%" alt="Avinashistoocool.github.io: Avinash Chandra Gupta (Avinash Gupta): personal website and portfolio. Physics at IIT Delhi, machine learning for partic"/></a>
+<a href="https://github.com/Avinashistoocool/asclepius"><img src="assets/cards/asclepius.svg" width="49%" alt="asclepius: Search-and-rescue drone swarm for NIDAR RescueSwarm: nadir-camera coverage path planning, ArduPilot mission export, flee"/></a>
+<a href="https://github.com/Avinashistoocool/ISRO-BAH-26"><img src="assets/cards/ISRO-BAH-26.svg" width="49%" alt="ISRO-BAH-26: Lunar south pole water-ice mapping from Chandrayaan-2 DFSAR radar polarimetry, ice volume estimate, landing-site selecti"/></a>
+<a href="https://github.com/Avinashistoocool/GDS-parT-MoE"><img src="assets/cards/GDS-parT-MoE.svg" width="49%" alt="GDS-parT-MoE: Mixture-of-Experts particle transformer for jet tagging: sparse upcycling, expert interpretability with mutual informati"/></a>
+<a href="https://github.com/Avinashistoocool/Gated-Dual-Stream-Particle-Transformer"><img src="assets/cards/Gated-Dual-Stream-Particle-Transformer.svg" width="49%" alt="Gated-Dual-Stream-Particle-Transformer: GDS-ParT: a gated dual-stream particle transformer for jet tagging on JetClass (84.8% acc, AUC 0.985). Pairwise physics "/></a>
+<a href="https://github.com/Avinashistoocool/AnaTele"><img src="assets/cards/AnaTele.svg" width="49%" alt="AnaTele: Drone crash investigation for ArduPilot flight logs (.tlog/.bin): 3D flight replay, compass/EKF, vibration and motor dia"/></a>
 <a href="https://github.com/Avinashistoocool/Rotary-Detonation-Engine"><img src="assets/cards/Rotary-Detonation-Engine.svg" width="49%" alt="Rotary-Detonation-Engine: Planning and visualisation materials for a university RDE research demonstrator: an interactive project atlas, a readabl"/></a>
-<a href="https://github.com/Avinashistoocool/Avinashistoocool.github.io"><img src="assets/cards/Avinashistoocool.github.io.svg" width="49%" alt="Avinashistoocool.github.io: Personal site, generated from my GitHub repos"/></a>
 <a href="https://github.com/Avinashistoocool/eraksha-hackathon"><img src="assets/cards/eraksha-hackathon.svg" width="49%" alt="eraksha-hackathon: IoT Flow Generator - IMPROVED VERSION. Simulates IoT device traffic with clear output"/></a>
 <a href="https://github.com/Avinashistoocool/Jet-Class-Particle-Visualizer"><img src="assets/cards/Jet-Class-Particle-Visualizer.svg" width="49%" alt="Jet-Class-Particle-Visualizer: Build a clean, modular, self-contained PyTorch implementation of a novel alternative to ParT that fuses single-particle "/></a>
 <a href="https://github.com/Avinashistoocool/Object-tracking-with-color"><img src="assets/cards/Object-tracking-with-color.svg" width="49%" alt="Object-tracking-with-color: This project consists of two different approaches to computer vision- both using opencv-python."/></a>
@@ -53,4 +59,4 @@
 [Buy me a coffee](https://buymeacoffee.com/avinashistoocool)
 </details>
 
-<sub>Generated from my repositories by <code>scripts/build.py</code>, refreshed by GitHub Actions.</sub>
+<sub>Avinash Chandra Gupta · <a href="https://avinashistoocool.github.io/">avinashistoocool.github.io</a> · generated from my repositories by <code>scripts/build.py</code>, refreshed by GitHub Actions.</sub>
