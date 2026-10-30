@@ -637,7 +637,13 @@ def readme_md(d):
         cards += "".join(f'<a href="{p["html_url"]}"><img src="assets/cards/{p["name"]}.svg" width="49%" alt="{e(p["name"])}: {e(p["text"][:120])}"/></a>\n'
                          for p in ps[i:i + 2])
     links = " · ".join(f"[{k}]({u})" for k, _, u in contacts(d) if u)
-    return f"""<img src="assets/terminal.svg" alt="Claude Code style terminal: who is {e(first_name(d['user']))}" width="100%"/>
+    return f"""# Avinash Chandra Gupta
+
+Hi, I'm **Avinash Chandra Gupta** (Avinash Gupta), a physics student at IIT Delhi. I build machine learning for particle physics,
+drone swarms and lunar science, plus open-source research tools.
+[Website](https://avinashistoocool.github.io/) · [LinkedIn](https://www.linkedin.com/in/avinashistoocool) · [X](https://x.com/suprcoolavinash)
+
+<img src="assets/terminal.svg" alt="Avinash Chandra Gupta: Claude Code style terminal, who is {e(first_name(d['user']))}" width="100%"/>
 
 <details>
 <summary><code>/projects</code> &nbsp;what I've built</summary>
@@ -680,7 +686,7 @@ def readme_md(d):
 {f'{chr(10)}[Buy me a coffee]({SUPPORT_URL})' if SUPPORT_URL else ''}
 </details>
 
-<sub>Generated from my repositories by <code>scripts/build.py</code>, refreshed by GitHub Actions.</sub>
+<sub>Avinash Chandra Gupta · <a href="https://avinashistoocool.github.io/">avinashistoocool.github.io</a> · generated from my repositories by <code>scripts/build.py</code>, refreshed by GitHub Actions.</sub>
 """
 
 
